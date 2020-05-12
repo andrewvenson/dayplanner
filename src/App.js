@@ -1,10 +1,16 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import "./App.css";
+import CalendarBlock from "./components/CalendarBlock";
+import Nav from "./components/Nav";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Day Planner</h1>
+    <div>
+      <Container>
+        <Nav />
+        <CalendarBlock />
+      </Container>
     </div>
   );
 }

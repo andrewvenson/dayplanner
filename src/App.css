@@ -1,3 +1,7 @@
-.App {
-  text-align: center;
+.timeBlock:hover {
+  background-color: rgb(235, 235, 235) !important;
+}
+
+.addEvent:hover {
+  box-shadow: 0px 0px 5px gray;
 }
