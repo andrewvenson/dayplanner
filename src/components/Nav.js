@@ -13,7 +13,7 @@ const Nav = () => {
         <h3 style={{ textShadow: "2px 2px 5px gray" }}>Dayplanner+</h3>
         <Today />
         <button
-          class="addEvent"
+          className="addEvent"
           style={{
             backgroundColor: "#ff575f",
             height: "30px",
