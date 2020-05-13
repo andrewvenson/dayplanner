@@ -2,21 +2,20 @@ import React, { useState } from "react";
 
 const TimeBlock = (props) => {
   const event = {
-    margin: "3px 2px 0px 2px",
+    margin: "4px 2px 0px 2px",
     borderRadius: "10px",
     border: "1px solid lightgray",
     fontSize: "12px",
+    boxShadow: "0px 2px 3px lightgray",
   };
 
   // Here is the state, each time interval can have multiple keys within an object, The 1 index to array will be the title, 2nd index will be the description
-  const [time, setEvents] = useState({
-    "1 AM": {
-      "1:30AM": ["Play Basketball", "Play basketball with my little nephew"],
-      "1:45AM": ["Study Algorithms", "study sort, search, and recursion"],
-    },
-    "2 AM": { "2:30AM": ["Code", "work on learning React"] },
-    "3 AM": { "": [] },
-  });
+  const [time, setEvents] = useState([
+    { sleep: ["sleepy time", "1:45AM", "1 AM"] },
+    { basketball: ["hoop with my nephew", "2:00PM", "2 PM"] },
+    { code: ["learn angular for new job", "1:30AM", "1 AM"] },
+    { algorithms: ["study algorithms for interviews", "3:45PM", "3 PM"] },
+  ]);
 
   return (
     <div
@@ -31,20 +30,20 @@ const TimeBlock = (props) => {
       <div style={{ display: "flex" }}>
         <p style={{ fontSize: "12px" }}>{props.time}</p>
 
-        {/* This is the code in question, only displays one time block  */}
-        {/* If you look at the console output you'll see what I'm trying to display within each time block */}
-        {[time].map((index) => {
-          for (var x in index) {
-            for (var block in index[x]) {
-              console.log(block, index[x][block][0]);
-              if (block !== "" && x === props.time)
-                return (
-                  <button key={index[x]} style={event}>
-                    {index[x][block][0]}
-                    <span> - {block}</span>
-                  </button>
-                );
-            }
+        {time.map((title, index) => {
+          console.log(props.time);
+          console.log(Object.keys(title).toString());
+          console.log(title[Object.keys(title).toString()][1]);
+
+          if (props.time === title[Object.keys(title).toString()][2]) {
+            return (
+              <button key={index} style={event}>
+                <span>
+                  {Object.keys(title).toString()} -{" "}
+                  {title[Object.keys(title).toString()][1]}
+                </span>
+              </button>
+            );
           }
         })}
       </div>
