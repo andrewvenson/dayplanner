@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import TimeBlock from "./TimeBlock";
 
@@ -29,6 +29,7 @@ const CalendarBlock = () => {
         <TimeBlock time="11 AM" />
         <TimeBlock time="12 PM" />
         <TimeBlock time="1 PM" />
+        <TimeBlock time="2 PM" />
         <TimeBlock time="3 PM" />
         <TimeBlock time="4 PM" />
         <TimeBlock time="5 PM" />
