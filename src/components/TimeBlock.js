@@ -118,7 +118,11 @@ const TimeBlock = (props) => {
             Close
           </Button>
           <Button
-            style={{ backgroundColor: "#32dba3", borderColor: "#32dba3" }}
+            style={{
+              backgroundColor: "#32dba3",
+              borderColor: "#32dba3",
+              borderRadius: "5px",
+            }}
             onClick={() => {
               // Create new object from prop block object
               const newEventObj = {
