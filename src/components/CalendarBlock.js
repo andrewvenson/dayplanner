@@ -4,12 +4,7 @@ import TimeBlock from "./TimeBlock";
 import { Container } from "react-bootstrap";
 
 const CalendarBlock = () => {
-  const [time, setEvents] = useState([
-    { sleep: ["sleepy time", "4:45AM", "4 AM"] },
-    { basketball: ["hoop with my nephew", "2:00PM", "2 PM"] },
-    { code: ["learn angular for new job", "2:30PM", "2 PM"] },
-    { algorithms: ["study algorithms for interviews", "3:45PM", "3 PM"] },
-  ]);
+  const [time, setEvents] = useState([]);
 
   const [block, setBlockEvent] = useState({
     title: "",
