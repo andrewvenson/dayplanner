@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import firebase from "../Firebase";
 import TimeBlock from "./TimeBlock";
+import { Container } from "react-bootstrap";
 
 const CalendarBlock = () => {
   const [time, setEvents] = useState([
@@ -16,6 +17,30 @@ const CalendarBlock = () => {
     time: "",
     timeblk: "",
   });
+
+  const db = firebase.firestore();
+
+  let event = db.collection("events");
+
+  useEffect(() => {
+    event
+      .get()
+      .then((snapshot) => {
+        let myEvents = [];
+        snapshot.forEach((doc) => {
+          if (doc.id === "event") {
+            console.log(doc.data());
+            for (var x in doc.data()) {
+              myEvents.push(doc.data()[x]);
+            }
+          }
+        });
+        setEvents(myEvents);
+      })
+      .catch((err) => {
+        console.log("Error getting documents", err);
+      });
+  }, []);
 
   return (
     <>

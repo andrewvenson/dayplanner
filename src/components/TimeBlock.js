@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import firebase from "../Firebase";
 
 const TimeBlock = (props) => {
   // modal consts
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // default Firestore
+  const db = firebase.firestore();
 
   // button styles
   const event = {
@@ -99,6 +103,9 @@ const TimeBlock = (props) => {
             variant="primary"
             onClick={() => {
               // props.setevent({ event: event.push(props.block) });
+              db.collection("events")
+                .doc("event")
+                .set(Object.assign({}, props.event));
               handleClose();
             }}
           >
