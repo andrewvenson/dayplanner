@@ -1,8 +1,42 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import firebase from "../Firebase";
 import TimeBlock from "./TimeBlock";
+import { Container } from "react-bootstrap";
 
 const CalendarBlock = () => {
+  const [time, setEvents] = useState([]);
+
+  const [block, setBlockEvent] = useState({
+    title: "",
+    description: "",
+    time: "",
+    timeblk: "",
+  });
+
+  const db = firebase.firestore();
+
+  let event = db.collection("events");
+
+  useEffect(() => {
+    event
+      .get()
+      .then((snapshot) => {
+        let myEvents = [];
+        snapshot.forEach((doc) => {
+          if (doc.id === "event") {
+            console.log(doc.data());
+            for (var x in doc.data()) {
+              myEvents.push(doc.data()[x]);
+            }
+          }
+        });
+        setEvents(myEvents);
+      })
+      .catch((err) => {
+        console.log("Error getting documents", err);
+      });
+  }, []);
+
   return (
     <>
       <Container
@@ -15,30 +49,174 @@ const CalendarBlock = () => {
           borderBottomRightRadius: "10px",
         }}
       >
-        <TimeBlock time="12 AM" />
-        <TimeBlock time="1 AM" />
-        <TimeBlock time="2 AM" />
-        <TimeBlock time="3 AM" />
-        <TimeBlock time="4 AM" />
-        <TimeBlock time="5 AM" />
-        <TimeBlock time="6 AM" />
-        <TimeBlock time="7 AM" />
-        <TimeBlock time="8 AM" />
-        <TimeBlock time="9 AM" />
-        <TimeBlock time="10 AM" />
-        <TimeBlock time="11 AM" />
-        <TimeBlock time="12 PM" />
-        <TimeBlock time="1 PM" />
-        <TimeBlock time="2 PM" />
-        <TimeBlock time="3 PM" />
-        <TimeBlock time="4 PM" />
-        <TimeBlock time="5 PM" />
-        <TimeBlock time="6 PM" />
-        <TimeBlock time="7 PM" />
-        <TimeBlock time="8 PM" />
-        <TimeBlock time="9 PM" />
-        <TimeBlock time="10 PM" />
-        <TimeBlock time="11 PM" />
+        <TimeBlock
+          event={time}
+          setevent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="12 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="1 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="2 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="3 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="4 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="5 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="6 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="7 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="8 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="9 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="10 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="11 AM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="12 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="1 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="2 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="3 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="4 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="5 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="6 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="7 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="8 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="9 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="10 PM"
+        />
+        <TimeBlock
+          event={time}
+          setEvent={setEvents}
+          block={block}
+          setblockevent={setBlockEvent}
+          time="11 PM"
+        />
       </Container>
     </>
   );
