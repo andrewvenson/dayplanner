@@ -21,6 +21,14 @@ const TimeBlock = (props) => {
     zIndex: "999px",
   };
 
+  // input styles for modal
+  const inputStyle = {
+    border: "1px solid lightgray",
+    borderRadius: "10px",
+    margin: "5px",
+    paddingLeft: "5px",
+  };
+
   return (
     <div
       className="timeBlock"
@@ -29,10 +37,11 @@ const TimeBlock = (props) => {
         color: "gray",
         borderTop: "1px solid #ededed",
         marginBottom: "0px",
+        cursor: "pointer",
       }}
     >
       <div
-        style={{ display: "flex", cursor: "pointer" }}
+        style={{ display: "flex" }}
         onClick={() => {
           props.setblockevent({ ...props.block, timeblk: props.time });
           console.log(props.time);
@@ -64,6 +73,7 @@ const TimeBlock = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>
             <input
+              style={inputStyle}
               type="text"
               placeholder="Add Title"
               onChange={(e) => {
@@ -75,19 +85,27 @@ const TimeBlock = (props) => {
         <Modal.Body>
           <form>
             <input
+              style={inputStyle}
               type="time"
               onChange={(e) => {
                 props.setblockevent({ ...props.block, time: e.target.value });
               }}
             />
             <br />
-            <input
-              type="text"
+            <textarea
+              style={{
+                width: "300px",
+                height: "100px",
+                border: "1px solid lightgray",
+                borderRadius: "10px",
+                margin: "5px",
+              }}
+              // type="textarea"
               placeholder="Description"
               onChange={(e) => {
                 props.setblockevent({
                   ...props.block,
-                  time: e.target.value,
+                  description: e.target.value,
                 });
               }}
             />
@@ -100,12 +118,25 @@ const TimeBlock = (props) => {
             Close
           </Button>
           <Button
-            variant="primary"
+            style={{ backgroundColor: "#32dba3", borderColor: "#32dba3" }}
             onClick={() => {
-              // props.setevent({ event: event.push(props.block) });
+              // Create new object from prop block object
+              const newEventObj = {
+                [props.block.title]: [
+                  props.block.description,
+                  props.block.time,
+                  props.block.timeblk,
+                ],
+              };
+              // concatenate newEvent object to current prop event array
+              props.setEvent(props.event.concat(newEventObj));
+
+              // Save to firestore
               db.collection("events")
                 .doc("event")
                 .set(Object.assign({}, props.event));
+
+              // Close Modal
               handleClose();
             }}
           >
