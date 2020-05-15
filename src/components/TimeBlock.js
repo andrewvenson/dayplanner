@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import firebase from "../Firebase";
 
@@ -8,8 +8,11 @@ const TimeBlock = (props) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // default Firestore
+  // default db Firestore
   const db = firebase.firestore();
+
+  // firebase collection
+  let eventAdd = db.collection("events");
 
   // button styles
   const event = {
@@ -132,13 +135,20 @@ const TimeBlock = (props) => {
                   props.block.timeblk,
                 ],
               };
-              // concatenate newEvent object to current prop event array
-              props.setEvent(props.event.concat(newEventObj));
-
-              // Save to firestore
-              db.collection("events")
-                .doc("event")
-                .set(Object.assign({}, props.event));
+              // concatenate newEvent object to current firebase object and then push to firebase
+              eventAdd.get().then((snapshot) => {
+                let myEvents = [];
+                snapshot.forEach((doc) => {
+                  if (doc.id === "event") {
+                    for (var x in doc.data()) {
+                      myEvents.push(doc.data()[x]);
+                    }
+                  }
+                });
+                db.collection("events")
+                  .doc("event")
+                  .set(Object.assign({}, myEvents.concat(newEventObj)));
+              });
 
               // Close Modal
               handleClose();

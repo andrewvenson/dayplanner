@@ -17,6 +17,7 @@ const CalendarBlock = () => {
 
   let event = db.collection("events");
 
+  // pull data from firebase into state
   useEffect(() => {
     event
       .get()
@@ -24,7 +25,6 @@ const CalendarBlock = () => {
         let myEvents = [];
         snapshot.forEach((doc) => {
           if (doc.id === "event") {
-            console.log(doc.data());
             for (var x in doc.data()) {
               myEvents.push(doc.data()[x]);
             }
@@ -35,7 +35,7 @@ const CalendarBlock = () => {
       .catch((err) => {
         console.log("Error getting documents", err);
       });
-  }, []);
+  }, [time]);
 
   return (
     <>
@@ -51,7 +51,7 @@ const CalendarBlock = () => {
       >
         <TimeBlock
           event={time}
-          setevent={setEvents}
+          setEvent={setEvents}
           block={block}
           setblockevent={setBlockEvent}
           time="12 AM"
