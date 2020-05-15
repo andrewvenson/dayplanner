@@ -11,7 +11,7 @@ const TimeBlock = (props) => {
   // default db Firestore
   const db = firebase.firestore();
 
-  // firebase collection
+  // firebase collections
   let eventAdd = db.collection("events");
 
   // button styles
@@ -128,13 +128,55 @@ const TimeBlock = (props) => {
             }}
             onClick={() => {
               // Create new object from prop block object
+
+              // Set block to correct timeblock depending on time
+              let timeBlockFromDynamicTime = `${props.block.time[0]}${props.block.time[1]}`;
+              let dynamicTime = parseInt(timeBlockFromDynamicTime);
+              let dynamicTimeToString = dynamicTime.toString();
+              let blockTime = "";
+              if (dynamicTimeToString.length === 2) {
+                if (dynamicTimeToString === "12") {
+                  console.log(`${dynamicTimeToString} PM`);
+                  // props.setblockevent({
+                  //   ...props.block,
+                  //   timeblk: `${dynamicTimeToString} PM`,
+                  // });
+                  blockTime = `${dynamicTimeToString} PM`;
+                } else {
+                  console.log(`${dynamicTime - 12} PM`);
+                  // props.setblockevent({
+                  //   ...props.block,
+                  //   timeblk: `${dynamicTime - 12} PM`,
+                  // });
+                  blockTime = `${dynamicTime - 12} PM`;
+                }
+              } else {
+                if (dynamicTimeToString === "0") {
+                  console.log("12 AM");
+                  // props.setblockevent({
+                  //   ...props.block,
+                  //   timeblk: "12 AM",
+                  // });
+                  blockTime = "12 AM";
+                } else {
+                  console.log(`${dynamicTimeToString} AM`);
+                  // props.setblockevent({
+                  //   ...props.block,
+                  //   timeblk: `${dynamicTimeToString} AM`,
+                  // });
+                  blockTime = `${dynamicTimeToString} AM`;
+                }
+              }
+
+              // create new object from state for concatenation
               const newEventObj = {
                 [props.block.title]: [
                   props.block.description,
                   props.block.time,
-                  props.block.timeblk,
+                  blockTime,
                 ],
               };
+
               // concatenate newEvent object to current firebase object and then push to firebase
               eventAdd.get().then((snapshot) => {
                 let myEvents = [];
