@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
-import firebase from "../Firebase";
+import React, { useState } from "react";
+import AddBlockModal from "./AddBlockModal"
 
 const TimeBlock = (props) => {
   // modal consts to chang modal states
@@ -9,12 +8,6 @@ const TimeBlock = (props) => {
   const handleShow = () => setShow(true);
 
   
-  // default db Firestore
-  const db = firebase.firestore();
-
-  // firebase collections
-  let eventAdd = db.collection("events");
-
   // button styles
   const event = {
     margin: "4px 2px 0px 2px",
@@ -25,13 +18,6 @@ const TimeBlock = (props) => {
     minWidth: "88px"
   };
 
-  // input styles for modal
-  const inputStyle = {
-    border: "1px solid lightgray",
-    borderRadius: "10px",
-    margin: "5px",
-    paddingLeft: "5px",
-  };
 
   let backcolor = "#fafafa"
 
@@ -75,6 +61,7 @@ const TimeBlock = (props) => {
             return (
               <button
                 key={index}
+                className="eventButton"
                 style={event}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -89,7 +76,8 @@ const TimeBlock = (props) => {
           }
         })}
       </div>
-      <Modal show={show} onHide={handleClose}>
+      <AddBlockModal show={show} handleClose={handleClose} setblockevent={props.setblockevent} block={props.block}/>
+      {/* <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             <input
@@ -200,7 +188,7 @@ const TimeBlock = (props) => {
             Save Changes
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
