@@ -3,11 +3,12 @@ import { Modal, Button } from "react-bootstrap";
 import firebase from "../Firebase";
 
 const TimeBlock = (props) => {
-  // modal consts
+  // modal consts to chang modal states
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
   // default db Firestore
   const db = firebase.firestore();
 
@@ -20,7 +21,6 @@ const TimeBlock = (props) => {
     borderRadius: "10px",
     border: "1px solid lightgray",
     fontSize: "12px",
-    boxShadow: "0px 2px 3px lightgray",
     zIndex: "999px",
   };
 
@@ -32,22 +32,39 @@ const TimeBlock = (props) => {
     paddingLeft: "5px",
   };
 
+  let backcolor = "#fafafa"
+
+  if (parseInt(props.hour)===parseInt(props.block.current)){
+    backcolor="#f2acb1"
+  }else if(parseInt(props.hour)<=parseInt(props.block.current)){
+    backcolor="lightgray"
+  }else{
+    backcolor="lightgreen"
+  }
+  // time block style
+  const blockStyle = {
+    height: "50px",
+    color: "gray",
+    borderTop: "1px solid #ededed",
+    marginBottom: "0px",
+    cursor: "pointer",
+    overflow: "hidden",
+    overflowY: "scroll",
+    wordWrap: "break-word",
+    backgroundColor: backcolor,
+  }
+  
+
   return (
     <div
       className="timeBlock"
-      style={{
-        height: "50px",
-        color: "gray",
-        borderTop: "1px solid #ededed",
-        marginBottom: "0px",
-        cursor: "pointer",
-      }}
+      style={blockStyle}
     >
       <div
         style={{ display: "flex" }}
         onClick={() => {
           props.setblockevent({ ...props.block, timeblk: props.time });
-          console.log(props.time);
+          // console.log(props.time);
           handleShow();
         }}
       >
@@ -137,33 +154,17 @@ const TimeBlock = (props) => {
               if (dynamicTimeToString.length === 2) {
                 if (dynamicTimeToString === "12") {
                   console.log(`${dynamicTimeToString} PM`);
-                  // props.setblockevent({
-                  //   ...props.block,
-                  //   timeblk: `${dynamicTimeToString} PM`,
-                  // });
                   blockTime = `${dynamicTimeToString} PM`;
                 } else {
                   console.log(`${dynamicTime - 12} PM`);
-                  // props.setblockevent({
-                  //   ...props.block,
-                  //   timeblk: `${dynamicTime - 12} PM`,
-                  // });
                   blockTime = `${dynamicTime - 12} PM`;
                 }
               } else {
                 if (dynamicTimeToString === "0") {
                   console.log("12 AM");
-                  // props.setblockevent({
-                  //   ...props.block,
-                  //   timeblk: "12 AM",
-                  // });
                   blockTime = "12 AM";
                 } else {
                   console.log(`${dynamicTimeToString} AM`);
-                  // props.setblockevent({
-                  //   ...props.block,
-                  //   timeblk: `${dynamicTimeToString} AM`,
-                  // });
                   blockTime = `${dynamicTimeToString} AM`;
                 }
               }
