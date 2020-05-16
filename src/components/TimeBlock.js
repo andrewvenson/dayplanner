@@ -61,7 +61,7 @@ const TimeBlock = (props) => {
       style={blockStyle}
     >
       <div
-        style={{ display: "flex" }}
+        style={{ display: "flex", height: "100%" }}
         onClick={() => {
           props.setblockevent({ ...props.block, timeblk: props.time });
           // console.log(props.time);
