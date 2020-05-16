@@ -22,6 +22,7 @@ const TimeBlock = (props) => {
     border: "1px solid lightgray",
     fontSize: "12px",
     zIndex: "999px",
+    minWidth: "88px"
   };
 
   // input styles for modal
@@ -43,14 +44,13 @@ const TimeBlock = (props) => {
   }
   // time block style
   const blockStyle = {
-    height: "50px",
+    height: "75px",
     color: "gray",
     borderTop: "1px solid #ededed",
     marginBottom: "0px",
     cursor: "pointer",
     overflow: "hidden",
-    overflowY: "scroll",
-    wordWrap: "break-word",
+    overflowX: "scroll",
     backgroundColor: backcolor,
   }
   
