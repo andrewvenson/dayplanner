@@ -69,6 +69,8 @@ const TimeBlock = (props) => {
                 </span>
               </button>
             );
+          } else {
+            return null;
           }
         })}
       </div>

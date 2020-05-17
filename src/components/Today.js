@@ -12,6 +12,7 @@ const Today = () => {
     const daynum = moment().format("Do");
 
     setToday({ ...today, day: daynum, dayName: daystr });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

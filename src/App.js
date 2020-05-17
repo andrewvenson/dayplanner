@@ -44,6 +44,7 @@ function App() {
       .catch((err) => {
         console.log("Error getting documents", err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time]);
 
   useEffect(() => {
@@ -53,6 +54,7 @@ function App() {
     let currentTimeToString = currentTime.toString();
 
     setBlockEvent({ ...block, current: currentTimeToString });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
