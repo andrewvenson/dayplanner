@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CalendarContext } from "../CalendarContext";
 import Today from "./Today";
 
 const Nav = () => {
+  const context = useContext(CalendarContext);
   return (
     <nav
       style={{
@@ -24,6 +26,7 @@ const Nav = () => {
             fontWeight: "bolder",
             color: "white",
           }}
+          onClick={context[4]}
         >
           Add Event
         </button>
