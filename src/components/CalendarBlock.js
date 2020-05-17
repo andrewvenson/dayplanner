@@ -16,6 +16,7 @@ const CalendarBlock = () => {
         overflowY: "scroll",
         borderBottomLeftRadius: "10px",
         borderBottomRightRadius: "10px",
+        backgroundColor: "whitesmoke",
       }}
     >
       <TimeBlock event={context[5]} time="12 AM" hour="0" />

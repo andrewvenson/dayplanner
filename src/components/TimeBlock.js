@@ -14,8 +14,8 @@ const TimeBlock = (props) => {
     minWidth: "88px",
   };
 
+  // Change hour block color depending on time
   let backcolor = "#fafafa";
-
   if (parseInt(props.hour) === parseInt(context[2].current)) {
     backcolor = "#f2acb1";
   } else if (parseInt(props.hour) <= parseInt(context[2].current)) {
@@ -41,7 +41,6 @@ const TimeBlock = (props) => {
       <div
         style={{ display: "flex", height: "100%" }}
         onClick={() => {
-          // context[3]({ ...context[2], timeblk: props.time });
           context[4]();
         }}
       >
@@ -56,6 +55,12 @@ const TimeBlock = (props) => {
                 style={event}
                 onClick={(e) => {
                   e.stopPropagation();
+                  // Display modal with title, description and time
+                  console.log(
+                    Object.keys(title).toString(),
+                    title[Object.keys(title).toString()][0],
+                    title[Object.keys(title).toString()][1]
+                  );
                 }}
               >
                 <span>

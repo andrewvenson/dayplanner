@@ -86,7 +86,7 @@ const AddBlockModal = (props) => {
             let dynamicTime = parseInt(timeBlockFromDynamicTime);
             let dynamicTimeToString = dynamicTime.toString();
             let blockTime = "";
-            if (dynamicTimeToString.length === 2) {
+            if (dynamicTime >= 12) {
               if (dynamicTimeToString === "12") {
                 console.log(`${dynamicTimeToString} PM`);
                 blockTime = `${dynamicTimeToString} PM`;
