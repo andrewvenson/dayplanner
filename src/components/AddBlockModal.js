@@ -13,6 +13,8 @@ const AddBlockModal = (props) => {
   // calendar context
   let context = useContext(CalendarContext);
 
+  const date = new Date();
+
   // input styles for modal
   const inputStyle = {
     border: "1px solid lightgray",
@@ -22,15 +24,17 @@ const AddBlockModal = (props) => {
   };
 
   return (
-    <Modal
-      show={context[0]}
-      onHide={context[1]}
-      //   style={{ backgroundColor: "whitesmoke", opacity: ".1" }}
-    >
+    <Modal show={context[0]} onHide={context[1]}>
       <Modal.Header closeButton>
         <Modal.Title>
           <input
-            style={inputStyle}
+            style={{
+              border: "1px solid lightgray",
+              borderRadius: "10px",
+              margin: "5px",
+              paddingLeft: "5px",
+              width: "90%",
+            }}
             type="text"
             placeholder="Add Title"
             onChange={(e) => {
