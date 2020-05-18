@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { CalendarContext } from "../CalendarContext";
+import ViewBlockModal from "./ViewBlockModal";
 
 const TimeBlock = (props) => {
   // context for calendar
   const context = useContext(CalendarContext);
+
   // button styles
   const event = {
     margin: "4px 2px 0px 2px",
@@ -14,8 +16,8 @@ const TimeBlock = (props) => {
     minWidth: "88px",
   };
 
+  // Change hour block color depending on time
   let backcolor = "#fafafa";
-
   if (parseInt(props.hour) === parseInt(context[2].current)) {
     backcolor = "#f2acb1";
   } else if (parseInt(props.hour) <= parseInt(context[2].current)) {
@@ -41,12 +43,10 @@ const TimeBlock = (props) => {
       <div
         style={{ display: "flex", height: "100%" }}
         onClick={() => {
-          // context[3]({ ...context[2], timeblk: props.time });
           context[4]();
         }}
       >
         <p style={{ fontSize: "12px" }}>{props.time}</p>
-
         {props.event.map((title, index) => {
           if (props.time === title[Object.keys(title).toString()][2]) {
             return (
@@ -56,6 +56,16 @@ const TimeBlock = (props) => {
                 style={event}
                 onClick={(e) => {
                   e.stopPropagation();
+                  console.log(Object.keys(title).toString());
+                  console.log(title[Object.keys(title).toString()][0]);
+                  console.log(title[Object.keys(title).toString()][1]);
+                  context[11]({
+                    ...context[10],
+                    title: Object.keys(title).toString(),
+                    description: title[Object.keys(title).toString()][0],
+                    time: title[Object.keys(title).toString()][1],
+                  });
+                  context[8]();
                 }}
               >
                 <span>
@@ -64,6 +74,8 @@ const TimeBlock = (props) => {
                 </span>
               </button>
             );
+          } else {
+            return null;
           }
         })}
       </div>

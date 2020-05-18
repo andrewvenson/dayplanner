@@ -12,13 +12,14 @@ const Today = () => {
     const daynum = moment().format("Do");
 
     setToday({ ...today, day: daynum, dayName: daystr });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div
       style={{
         border: "1px solid lightgray",
-        borderRadius: "50%",
+        borderRadius: "25px",
         padding: "10px",
         backgroundColor: "#32dba3",
       }}

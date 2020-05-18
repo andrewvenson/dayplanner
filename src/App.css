@@ -7,7 +7,9 @@
 }
 
 .eventButton:hover {
-  box-shadow: px 0px 5px gray !important;
+  box-shadow: 0px 0px 5px gray !important;
+  background-color: lightgray !important;
+  margin-bottom: 5px !important;
 }
 
 ::-webkit-scrollbar {

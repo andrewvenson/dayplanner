@@ -7,8 +7,9 @@ const Nav = () => {
   return (
     <nav
       style={{
-        backgroundColor: "rgb(235, 235, 235)",
+        backgroundColor: "whitesmoke",
         padding: "10px 3px 10px 3px",
+        borderBottom: "0px",
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
