@@ -56,14 +56,18 @@ const TimeBlock = (props) => {
                 style={event}
                 onClick={(e) => {
                   e.stopPropagation();
-                  console.log(Object.keys(title).toString());
-                  console.log(title[Object.keys(title).toString()][0]);
-                  console.log(title[Object.keys(title).toString()][1]);
+                  // console.log(Object.keys(title).toString());
+                  // console.log(title[Object.keys(title).toString()][0]);
+                  // console.log(title[Object.keys(title).toString()][1]);
+                  // console.log(index);
+                  // console.log(title);
+                  // console.log(props.event.filter((ind) => ind != title));
                   context[11]({
                     ...context[10],
                     title: Object.keys(title).toString(),
                     description: title[Object.keys(title).toString()][0],
                     time: title[Object.keys(title).toString()][1],
+                    titleobject: title,
                   });
                   context[8]();
                 }}
