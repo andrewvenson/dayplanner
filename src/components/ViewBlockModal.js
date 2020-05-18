@@ -133,57 +133,69 @@ const ViewBlockModal = (props) => {
                 let dynamicTime = parseInt(timeBlockFromDynamicTime);
                 let dynamicTimeToString = dynamicTime.toString();
 
-                console.log(dynamicTimeToString);
-                // let blockTime = "";
-                // if (dynamicTime >= 12) {
-                //   if (dynamicTimeToString === "12") {
-                //     console.log(`${dynamicTimeToString} PM`);
-                //     blockTime = `${dynamicTimeToString} PM`;
-                //   } else {
-                //     console.log(`${dynamicTime - 12} PM`);
-                //     blockTime = `${dynamicTime - 12} PM`;
-                //   }
-                // } else {
-                //   if (dynamicTimeToString === "0") {
-                //     console.log("12 AM");
-                //     blockTime = "12 AM";
-                //   } else {
-                //     console.log(`${dynamicTimeToString} AM`);
-                //     blockTime = `${dynamicTimeToString} AM`;
-                //   }
-                // }
+                let blockTime = "";
 
-                // // create new object from state for concatenation
-                // const newEventObj = {
-                //   [context[2].title]: [
-                //     context[2].description,
-                //     context[2].time,
-                //     blockTime,
-                //   ],
-                // };
+                if (dynamicTime >= 12) {
+                  if (dynamicTimeToString === "12") {
+                    console.log(`${dynamicTimeToString} PM`);
+                    blockTime = `${dynamicTimeToString} PM`;
+                  } else {
+                    console.log(`${dynamicTime - 12} PM`);
+                    blockTime = `${dynamicTime - 12} PM`;
+                  }
+                } else {
+                  if (dynamicTimeToString === "0") {
+                    console.log("12 AM");
+                    blockTime = "12 AM";
+                  } else {
+                    console.log(`${dynamicTimeToString} AM`);
+                    blockTime = `${dynamicTimeToString} AM`;
+                  }
+                }
 
-                // eventAdd
-                //   .get()
-                //   .then((doc) => {
-                //     if (!doc.exists) {
-                //       console.log("No such document!");
-                //     } else {
-                //       let myEvents = [];
-                //       for (var x in doc.data()) {
-                //         myEvents.push(doc.data()[x]);
-                //       }
-                //       db.collection("events")
-                //         .doc("event")
-                //         .set(Object.assign({}, myEvents.concat(newEventObj)));
-                //       context[3]({
-                //         ...context[2],
-                //         saveCount: context[2].saveCount + 1,
-                //       });
-                //     }
-                //   })
-                //   .catch((err) => {
-                //     console.log("Error getting document", err);
-                //   });
+                // create new object from state for concatenation
+                const newEventObj = {
+                  [context[10].title]: [
+                    context[10].description,
+                    context[10].time,
+                    blockTime,
+                  ],
+                };
+
+                eventAdd
+                  .get()
+                  .then((doc) => {
+                    if (!doc.exists) {
+                      console.log("No such document!");
+                    } else {
+                      let myEvents = [];
+                      for (var x in doc.data()) {
+                        myEvents.push(doc.data()[x]);
+                      }
+
+                      // set new myEvents array to array exluding current object
+                      myEvents = context[5].filter(
+                        (title) => title !== context[10]["titleobject"]
+                      );
+
+                      // concatanate new event to existing events and push to firebase
+                      db.collection("events")
+                        .doc("event")
+                        .set(Object.assign({}, myEvents.concat(newEventObj)));
+
+                      // change save count
+                      context[3]({
+                        ...context[2],
+                        saveCount: context[2].saveCount + 1,
+                      });
+                    }
+                  })
+                  .catch((err) => {
+                    console.log("Error getting document", err);
+                  });
+                // change edit state back to false
+                setMutation({ ...mutateevent, edit: false });
+                // close modal
                 context[9]();
               }}
             >
