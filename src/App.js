@@ -25,6 +25,7 @@ function App() {
     title: "",
     description: "",
     time: "",
+    timeblk: "",
     titleobject: null,
     event: time,
   });
