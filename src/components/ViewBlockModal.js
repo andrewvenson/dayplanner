@@ -239,7 +239,7 @@ const ViewBlockModal = (props) => {
                   ...context[2],
                   saveCount: context[2].saveCount + 1,
                 });
-                setMutation({ ...mutateevent, edit: false });
+                setMutation({ ...mutateevent, delete: false, edit: false });
                 // Close modal
                 context[9]();
               }}
