@@ -8,7 +8,7 @@ const TimeBlock = (props) => {
 
   // button styles
   const event = {
-    margin: "4px 2px 0px 2px",
+    margin: "4px 2px 2px 2px",
     borderRadius: "10px",
     border: "1px solid lightgray",
     fontSize: "12px",
@@ -47,7 +47,7 @@ const TimeBlock = (props) => {
           context[4]();
         }}
       >
-        <p style={{ fontSize: "12px" }}>{props.time}</p>
+        <p style={{ fontSize: "12px", width: "20px" }}>{props.time}</p>
         {props.event.map((title, index) => {
           if (props.time === title[Object.keys(title).toString()][2]) {
             return (
