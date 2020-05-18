@@ -8,7 +8,7 @@ const AddBlockModal = (props) => {
   const db = firebase.firestore();
 
   // firebase collections
-  let eventAdd = db.collection("events");
+  let eventAdd = db.collection("events").doc("event");
 
   // calendar context
   let context = useContext(CalendarContext);
@@ -113,20 +113,28 @@ const AddBlockModal = (props) => {
               ],
             };
 
-            // concatenate newEvent object to current firebase object and then push to firebase
-            eventAdd.get().then((snapshot) => {
-              let myEvents = [];
-              snapshot.forEach((doc) => {
-                if (doc.id === "event") {
+            eventAdd
+              .get()
+              .then((doc) => {
+                if (!doc.exists) {
+                  console.log("No such document!");
+                } else {
+                  let myEvents = [];
                   for (var x in doc.data()) {
                     myEvents.push(doc.data()[x]);
                   }
+                  db.collection("events")
+                    .doc("event")
+                    .set(Object.assign({}, myEvents.concat(newEventObj)));
+                  context[3]({
+                    ...context[2],
+                    saveCount: context[2].saveCount + 1,
+                  });
                 }
+              })
+              .catch((err) => {
+                console.log("Error getting document", err);
               });
-              db.collection("events")
-                .doc("event")
-                .set(Object.assign({}, myEvents.concat(newEventObj)));
-            });
 
             // Close Modal
             context[1]();

@@ -15,6 +15,7 @@ function App() {
     time: "",
     timeblk: "",
     current: "",
+    saveCount: 0,
   });
 
   // modal consts to chang modal states
@@ -24,28 +25,29 @@ function App() {
 
   const db = firebase.firestore();
 
-  let event = db.collection("events");
+  let event = db.collection("events").doc("event");
 
-  // pull data from firebase into state
   useEffect(() => {
     event
       .get()
-      .then((snapshot) => {
-        let myEvents = [];
-        snapshot.forEach((doc) => {
-          if (doc.id === "event") {
-            for (var x in doc.data()) {
-              myEvents.push(doc.data()[x]);
-            }
+      .then((doc) => {
+        if (!doc.exists) {
+          console.log("No such document!");
+        } else {
+          let myEvents = [];
+          for (var x in doc.data()) {
+            myEvents.push(doc.data()[x]);
           }
-        });
-        setEvents(myEvents);
+          console.log(doc.data());
+          setEvents(myEvents);
+        }
       })
       .catch((err) => {
-        console.log("Error getting documents", err);
+        console.log("Error getting document", err);
       });
+    // get data once modal is saved
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [time]);
+  }, [block.saveCount]);
 
   useEffect(() => {
     const date = new Date();

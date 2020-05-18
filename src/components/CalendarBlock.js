@@ -17,6 +17,7 @@ const CalendarBlock = () => {
         borderBottomLeftRadius: "10px",
         borderBottomRightRadius: "10px",
         backgroundColor: "whitesmoke",
+        borderTop: "none",
       }}
     >
       <TimeBlock event={context[5]} time="12 AM" hour="0" />
