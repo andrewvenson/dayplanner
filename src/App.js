@@ -25,6 +25,8 @@ function App() {
     title: "",
     description: "",
     time: "",
+    titleobject: null,
+    event: time,
   });
 
   // modal consts to chang add modal states
