@@ -13,8 +13,6 @@ const AddBlockModal = (props) => {
   // calendar context
   let context = useContext(CalendarContext);
 
-  const date = new Date();
-
   // input styles for modal
   const inputStyle = {
     border: "1px solid lightgray",

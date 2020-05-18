@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { CalendarContext } from "../CalendarContext";
-import ViewBlockModal from "./ViewBlockModal";
 
 const TimeBlock = (props) => {
   // context for calendar
