@@ -55,6 +55,14 @@ function App() {
           for (var x in doc.data()) {
             myEvents.push(doc.data()[x]);
           }
+          // sort all events in to state
+          myEvents.sort((ev1, ev2) => {
+            if (ev1[Object.keys(ev1)][3] > ev2[Object.keys(ev2)][3]) {
+              return 1;
+            } else {
+              return -1;
+            }
+          });
           setEvents(myEvents);
         }
       })
