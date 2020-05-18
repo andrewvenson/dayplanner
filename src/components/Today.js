@@ -24,14 +24,15 @@ const Today = () => {
         backgroundColor: "#32dba3",
       }}
     >
-      <div style={{ textAlign: "center" }}>
-        <p style={{ margin: "0px", fontWeight: "bold", color: "white" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <span style={{ margin: "0px", fontWeight: "bold", color: "white" }}>
           {today.day}
-        </p>
+        </span>
+        <p style={{ color: "white", margin: "0px" }}>-</p>
+        <span style={{ margin: "0px", fontWeight: "bold", color: "white" }}>
+          {today.dayName}
+        </span>
       </div>
-      <p style={{ margin: "0px", fontWeight: "bold", color: "white" }}>
-        {today.dayName}
-      </p>
     </div>
   );
 };

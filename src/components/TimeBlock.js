@@ -14,6 +14,7 @@ const TimeBlock = (props) => {
     fontSize: "12px",
     zIndex: "999px",
     minWidth: "88px",
+    backgroundColor: "whitesmoke",
   };
 
   // Change hour block color depending on time

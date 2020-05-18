@@ -13,10 +13,15 @@ const Nav = () => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h3 style={{ textShadow: "2px 2px 5px #b5b5b5", color: "#ff575f" }}>
+        <h3
+          style={{
+            textShadow: "2px 2px 5px #b5b5b5",
+            color: "#ff575f",
+          }}
+        >
           Dayplanner+
         </h3>
-        <Today />
+
         <button
           className="addEvent"
           style={{
@@ -26,11 +31,15 @@ const Nav = () => {
             borderRadius: "5px",
             fontWeight: "bolder",
             color: "white",
+            marginTop: "5px",
           }}
           onClick={context[4]}
         >
           Add Event
         </button>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Today />
       </div>
     </nav>
   );

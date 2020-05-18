@@ -22,11 +22,7 @@ const ViewBlockModal = (props) => {
   };
 
   return (
-    <Modal
-      show={context[7]}
-      onHide={context[9]}
-      //   style={{ backgroundColor: "whitesmoke", opacity: ".1" }}
-    >
+    <Modal show={context[7]} onHide={context[9]}>
       <Modal.Header closeButton>
         <Modal.Title>
           <h1>{context[10]["title"]}</h1>
