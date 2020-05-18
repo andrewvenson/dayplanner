@@ -7,8 +7,10 @@ import firebase from "./Firebase";
 import { CalendarProvider } from "./CalendarContext";
 
 function App() {
+  // all events/times
   const [time, setEvents] = useState([]);
 
+  // current hour block selected
   const [block, setBlockEvent] = useState({
     title: "",
     description: "",
@@ -18,10 +20,22 @@ function App() {
     saveCount: 0,
   });
 
-  // modal consts to chang modal states
+  // selected button on hour block state
+  const [selbutton, setSelButton] = useState({
+    title: "",
+    description: "",
+    time: "",
+  });
+
+  // modal consts to chang add modal states
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // View Block Modal state
+  const [showaddmodal, setShowAddModal] = useState(false);
+  const handleAddClose = () => setShowAddModal(false);
+  const handleAddShow = () => setShowAddModal(true);
 
   const db = firebase.firestore();
 
@@ -38,7 +52,6 @@ function App() {
           for (var x in doc.data()) {
             myEvents.push(doc.data()[x]);
           }
-          console.log(doc.data());
           setEvents(myEvents);
         }
       })
@@ -69,6 +82,11 @@ function App() {
         handleShow,
         time,
         setEvents,
+        showaddmodal,
+        handleAddShow,
+        handleAddClose,
+        selbutton,
+        setSelButton,
       ]}
     >
       <Container>

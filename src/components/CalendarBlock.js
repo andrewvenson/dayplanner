@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { CalendarContext } from "../CalendarContext";
 import TimeBlock from "./TimeBlock";
 import AddBlockModal from "./AddBlockModal";
+import ViewBlockModal from "./ViewBlockModal";
+
 import { Container } from "react-bootstrap";
 
 const CalendarBlock = () => {
@@ -45,6 +47,7 @@ const CalendarBlock = () => {
       <TimeBlock event={context[5]} time="10 PM" hour="22" />
       <TimeBlock event={context[5]} time="11 PM" hour="23" />
       <AddBlockModal />
+      <ViewBlockModal selbutton={context[10]} />
     </Container>
   );
 };

@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { CalendarContext } from "../CalendarContext";
+import ViewBlockModal from "./ViewBlockModal";
 
 const TimeBlock = (props) => {
   // context for calendar
   const context = useContext(CalendarContext);
+
   // button styles
   const event = {
     margin: "4px 2px 0px 2px",
@@ -45,7 +47,6 @@ const TimeBlock = (props) => {
         }}
       >
         <p style={{ fontSize: "12px" }}>{props.time}</p>
-
         {props.event.map((title, index) => {
           if (props.time === title[Object.keys(title).toString()][2]) {
             return (
@@ -55,12 +56,16 @@ const TimeBlock = (props) => {
                 style={event}
                 onClick={(e) => {
                   e.stopPropagation();
-                  // Display modal with title, description and time
-                  console.log(
-                    Object.keys(title).toString(),
-                    title[Object.keys(title).toString()][0],
-                    title[Object.keys(title).toString()][1]
-                  );
+                  console.log(Object.keys(title).toString());
+                  console.log(title[Object.keys(title).toString()][0]);
+                  console.log(title[Object.keys(title).toString()][1]);
+                  context[11]({
+                    ...context[10],
+                    title: Object.keys(title).toString(),
+                    description: title[Object.keys(title).toString()][0],
+                    time: title[Object.keys(title).toString()][1],
+                  });
+                  context[8]();
                 }}
               >
                 <span>
