@@ -153,12 +153,15 @@ const ViewBlockModal = (props) => {
                   }
                 }
 
+                const newTime = parseInt(context[10].time.replace(":", ""));
+
                 // create new object from state for concatenation
                 const newEventObj = {
                   [context[10].title]: [
                     context[10].description,
                     context[10].time,
                     blockTime,
+                    newTime,
                   ],
                 };
 

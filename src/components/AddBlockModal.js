@@ -107,12 +107,15 @@ const AddBlockModal = (props) => {
               }
             }
 
+            const newTime = parseInt(context[2].time.replace(":", ""));
+
             // create new object from state for concatenation
             const newEventObj = {
               [context[2].title]: [
                 context[2].description,
                 context[2].time,
                 blockTime,
+                newTime,
               ],
             };
 
