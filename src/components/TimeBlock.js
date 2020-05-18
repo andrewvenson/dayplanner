@@ -42,7 +42,7 @@ const TimeBlock = (props) => {
   return (
     <div className="timeBlock" style={blockStyle}>
       <div
-        style={{ display: "flex", height: "100%" }}
+        style={{ display: "flex", height: "100%", paddingLeft: "2px" }}
         onClick={() => {
           context[4]();
         }}

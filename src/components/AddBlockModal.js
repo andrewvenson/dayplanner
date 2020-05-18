@@ -41,6 +41,7 @@ const AddBlockModal = (props) => {
       </Modal.Header>
       <Modal.Body>
         <form>
+          <span>Time</span>
           <input
             style={inputStyle}
             type="time"
